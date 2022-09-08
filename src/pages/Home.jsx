@@ -1,4 +1,5 @@
 import React from 'react';
+import CartButton from '../components/CartButton';
 import { getCategories } from '../services/api';
 
 class Home extends React.Component {
@@ -35,6 +36,7 @@ class Home extends React.Component {
 
           </button>
         ))}
+        <CartButton />
       </div>
     );
   }
