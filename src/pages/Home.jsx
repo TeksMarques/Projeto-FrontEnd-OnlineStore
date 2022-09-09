@@ -36,6 +36,14 @@ class Home extends React.Component {
     });
   };
 
+  handleClickCategories = async ({ target }) => {
+    const { results } = await getProductsFromCategoryAndQuery(target.id, null);
+
+    this.setState({
+      productList: results,
+    });
+  };
+
   showProductList = () => { // Renderize na tela uma exibição resumida de todos os produtos retornados pela API, contendo o nome, a imagem e o preço de cada produto;
     const { productList } = this.state;
 
@@ -66,6 +74,8 @@ class Home extends React.Component {
             key={ e.id }
             type="button"
             data-testid="category"
+            onClick={ this.handleClickCategories }
+            onChange={ this.showProductList }
           >
             { e.name }
 
