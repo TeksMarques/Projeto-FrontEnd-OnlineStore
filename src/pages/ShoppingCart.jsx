@@ -10,9 +10,9 @@ class ShoppingCart extends React.Component {
     return (
       cart.length === 0 && (
         <div>
-          <p data-testid="shopping-cart-empty-message">
+          <h1 data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
-          </p>
+          </h1>
         </div>
       ));
   }
