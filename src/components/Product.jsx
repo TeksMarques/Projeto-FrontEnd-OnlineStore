@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartButtonDetail from './CartButtonDetail';
 
 class Product extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class Product extends React.Component {
         <p>
           { productPrice }
         </p>
+        <CartButtonDetail />
       </div>
     );
   }
