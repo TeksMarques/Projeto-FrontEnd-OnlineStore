@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartButton from '../components/CartButton';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getCategories,
+  getProductsFromCategoryAndQuery,
+} from '../services/api';
 import Product from '../components/Product';
 
 class Home extends React.Component {
@@ -19,7 +23,8 @@ class Home extends React.Component {
     this.setState({ categorias: types });
   };
 
-  inputHandleChange = (event) => { // lida com as mudanças no input (adiciona no state)
+  inputHandleChange = (event) => {
+    // lida com as mudanças no input (adiciona no state)
     const inputValue = event.target.value;
 
     this.setState({
@@ -29,7 +34,10 @@ class Home extends React.Component {
 
   buttonHandleClick = async () => {
     const { categorias, queryValue } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(categorias, queryValue);
+    const { results } = await getProductsFromCategoryAndQuery(
+      categorias,
+      queryValue,
+    );
 
     this.setState({
       productList: results,
@@ -44,16 +52,24 @@ class Home extends React.Component {
     });
   };
 
-  showProductList = () => { // Renderize na tela uma exibição resumida de todos os produtos retornados pela API, contendo o nome, a imagem e o preço de cada produto;
+  showProductList = () => {
+    // Renderize na tela uma exibição resumida de todos os produtos retornados pela API, contendo o nome, a imagem e o preço de cada produto;
     const { productList } = this.state;
 
     return productList.map((product) => (
-      <Product
-        productName={ product.title }
-        productImage={ product.thumbnail }
-        productPrice={ product.price }
-        key={ product.id }
-      />
+      <div key={ product.id }>
+        <Product
+          productName={ product.title }
+          productImage={ product.thumbnail }
+          productPrice={ product.price }
+        />
+        <Link
+          data-testid="product-detail-link"
+          to={ `/productdetails/${product.id}` }
+        >
+          Detalhes
+        </Link>
+      </div>
     ));
   };
 
@@ -63,9 +79,7 @@ class Home extends React.Component {
 
     return (
       <div>
-        <h2
-          data-testid="home-initial-message"
-        >
+        <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
 
@@ -77,8 +91,7 @@ class Home extends React.Component {
             onClick={ this.handleClickCategories }
             onChange={ this.showProductList }
           >
-            { e.name }
-
+            {e.name}
           </button>
         ))}
         <CartButton />
@@ -97,11 +110,11 @@ class Home extends React.Component {
         >
           Pesquisar
         </button>
-        {
-          (productList.length > 0)
-            ? this.showProductList()
-            : <p>{ notFoundErrorMessage }</p>
-        }
+        {productList.length > 0 ? (
+          this.showProductList()
+        ) : (
+          <p>{notFoundErrorMessage}</p>
+        )}
       </div>
     );
   }
