@@ -45,10 +45,18 @@ class Home extends React.Component {
   };
 
   handleClickCategories = async ({ target }) => {
-    const { results } = await getProductsFromCategoryAndQuery(target.id, null);
-
+    const { results } = await getProductsFromCategoryAndQuery(target.id);
+    const categories = results.map(({ id, title, price, thumbnail }) => (
+      <Product
+        key={ id }
+        productName={ title }
+        productImage={ thumbnail }
+        productPrice={ price }
+      />
+    ));
+    console.log(categories);
     this.setState({
-      productList: results,
+      productList: categories,
     });
   };
 
@@ -89,7 +97,6 @@ class Home extends React.Component {
             type="button"
             data-testid="category"
             onClick={ this.handleClickCategories }
-            onChange={ this.showProductList }
           >
             {e.name}
           </button>

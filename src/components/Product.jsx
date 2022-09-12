@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartButtonDetail from './CartButtonDetail';
+import saveLocalStorage from '../services/saveLocalStorage';
 
 class Product extends React.Component {
+  handleClick = () => {
+    const { productName, productImage, productPrice, id } = this.props;
+    const object = { productName, productImage, productPrice, id, amountProdut: 1 };
+    saveLocalStorage(object);
+  };
+
   render() {
-    const { productName, productImage, productPrice } = this.props;
+    const { productName, productImage, productPrice, id } = this.props;
 
     return (
-      <div
-        data-testid="product" // Adicione o atributo data-testid="product" nos elementos que possuem os dados dos produtos;
-      >
+      <div data-testid="product" id={ id }>
         <h1>
           { productName }
         </h1>
@@ -20,7 +24,13 @@ class Product extends React.Component {
         <p>
           { productPrice }
         </p>
-        <CartButtonDetail />
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.handleClick }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
@@ -30,6 +40,7 @@ Product.propTypes = {
   productName: PropTypes.string.isRequired,
   productImage: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Product;
