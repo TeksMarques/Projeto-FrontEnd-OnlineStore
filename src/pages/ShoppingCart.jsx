@@ -3,25 +3,30 @@ import ProductCart from '../components/ProductCart';
 
 class ShoppingCart extends React.Component {
   state = {
+    cart: [],
     loading: false,
   };
 
-  render() {
+  componentDidMount() {
     const cartItem = JSON.parse(localStorage.getItem('cartItem'));
-    const { loading } = this.state;
-    console.log(cartItem);
+    this.setState({ cart: cartItem });
+  }
+
+  render() {
+    const { loading, cart } = this.state;
+    console.log(cart);
     return (
       <div>
         {loading && <p>Carregando...</p>}
-        {cartItem
+        {cart
           ? (
-            cartItem.map((product) => (
+            cart.map((product) => (
               <ProductCart
                 key={ product.productName }
                 productName={ product.productName }
                 productImage={ product.productImage }
                 productPrice={ product.productPrice }
-                amountProdut={ product.amountProdut }
+                amountProduct={ product.amountProduct }
               />
             ))
           )

@@ -7,7 +7,7 @@ class ProductCart
     const { productName,
       productImage,
       productPrice,
-      amountProdut } = this.props;
+      amountProduct } = this.props;
     return (
       <div>
         <h3 data-testid="shopping-cart-product-name">
@@ -18,7 +18,7 @@ class ProductCart
           {`R$: ${productPrice}`}
         </p>
         <p data-testid="shopping-cart-product-quantity">
-          { amountProdut }
+          { amountProduct }
         </p>
       </div>
     );
@@ -29,6 +29,6 @@ ProductCart.propTypes = {
   productName: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
   productImage: PropTypes.string.isRequired,
-  amountProdut: PropTypes.number.isRequired,
+  amountProduct: PropTypes.number.isRequired,
 };
 export default ProductCart;

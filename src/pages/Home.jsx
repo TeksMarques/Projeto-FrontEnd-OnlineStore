@@ -14,8 +14,8 @@ class Home extends React.Component {
     productList: [], // lista de produtos
   };
 
-  async componentDidMount() {
-    await this.addCategories();
+  componentDidMount() {
+    this.addCategories();
   }
 
   addCategories = async () => {
@@ -38,7 +38,6 @@ class Home extends React.Component {
       categorias,
       queryValue,
     );
-
     this.setState({
       productList: results,
     });
@@ -46,24 +45,14 @@ class Home extends React.Component {
 
   handleClickCategories = async ({ target }) => {
     const { results } = await getProductsFromCategoryAndQuery(target.id);
-    const categories = results.map(({ id, title, price, thumbnail }) => (
-      <Product
-        key={ id }
-        productName={ title }
-        productImage={ thumbnail }
-        productPrice={ price }
-      />
-    ));
-    console.log(categories);
     this.setState({
-      productList: categories,
+      productList: results,
     });
   };
 
   showProductList = () => {
     // Renderize na tela uma exibição resumida de todos os produtos retornados pela API, contendo o nome, a imagem e o preço de cada produto;
     const { productList } = this.state;
-
     return productList.map((product) => (
       <div key={ product.id }>
         <Product
