@@ -7,10 +7,9 @@ class ProductCart
     const { productName,
       productImage,
       productPrice,
-      id,
       amountProdut } = this.props;
     return (
-      <div key={ id }>
+      <div>
         <h3 data-testid="shopping-cart-product-name">
           { productName }
         </h3>
@@ -30,7 +29,6 @@ ProductCart.propTypes = {
   productName: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
   productImage: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   amountProdut: PropTypes.number.isRequired,
 };
 export default ProductCart;

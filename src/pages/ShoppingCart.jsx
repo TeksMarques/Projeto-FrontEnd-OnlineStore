@@ -9,6 +9,7 @@ class ShoppingCart extends React.Component {
   render() {
     const cartItem = JSON.parse(localStorage.getItem('cartItem'));
     const { loading } = this.state;
+    console.log(cartItem);
     return (
       <div>
         {loading && <p>Carregando...</p>}
@@ -16,8 +17,7 @@ class ShoppingCart extends React.Component {
           ? (
             cartItem.map((product) => (
               <ProductCart
-                key={ product.id }
-                id={ product.id }
+                key={ product.productName }
                 productName={ product.productName }
                 productImage={ product.productImage }
                 productPrice={ product.productPrice }

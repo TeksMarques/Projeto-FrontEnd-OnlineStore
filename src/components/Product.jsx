@@ -4,16 +4,16 @@ import saveLocalStorage from '../services/saveLocalStorage';
 
 class Product extends React.Component {
   handleClick = () => {
-    const { productName, productImage, productPrice, id } = this.props;
-    const object = { productName, productImage, productPrice, id, amountProdut: 1 };
+    const { productName, productImage, productPrice } = this.props;
+    const object = { productName, productImage, productPrice, amountProdut: 1 };
     saveLocalStorage(object);
   };
 
   render() {
-    const { productName, productImage, productPrice, id } = this.props;
+    const { productName, productImage, productPrice } = this.props;
 
     return (
-      <div data-testid="product" id={ id }>
+      <div data-testid="product">
         <h1>
           { productName }
         </h1>
@@ -40,7 +40,6 @@ Product.propTypes = {
   productName: PropTypes.string.isRequired,
   productImage: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
 };
 
 export default Product;
