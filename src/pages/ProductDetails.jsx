@@ -11,7 +11,6 @@ class ProductDetails extends React.Component {
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const resultado = await getProductById(id);
-    console.log(resultado);
     this.setState({
       products: resultado,
     });

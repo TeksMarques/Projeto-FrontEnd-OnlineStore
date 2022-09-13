@@ -14,8 +14,8 @@ class Home extends React.Component {
     productList: [], // lista de produtos
   };
 
-  async componentDidMount() {
-    await this.addCategories();
+  componentDidMount() {
+    this.addCategories();
   }
 
   addCategories = async () => {
@@ -38,15 +38,13 @@ class Home extends React.Component {
       categorias,
       queryValue,
     );
-
     this.setState({
       productList: results,
     });
   };
 
   handleClickCategories = async ({ target }) => {
-    const { results } = await getProductsFromCategoryAndQuery(target.id, null);
-
+    const { results } = await getProductsFromCategoryAndQuery(target.id);
     this.setState({
       productList: results,
     });
@@ -55,7 +53,6 @@ class Home extends React.Component {
   showProductList = () => {
     // Renderize na tela uma exibição resumida de todos os produtos retornados pela API, contendo o nome, a imagem e o preço de cada produto;
     const { productList } = this.state;
-
     return productList.map((product) => (
       <div key={ product.id }>
         <Product
@@ -89,7 +86,6 @@ class Home extends React.Component {
             type="button"
             data-testid="category"
             onClick={ this.handleClickCategories }
-            onChange={ this.showProductList }
           >
             {e.name}
           </button>
