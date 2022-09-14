@@ -14,7 +14,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { loading, cart } = this.state;
-    console.log(cart);
     return (
       <div>
         {loading && <p>Carregando...</p>}

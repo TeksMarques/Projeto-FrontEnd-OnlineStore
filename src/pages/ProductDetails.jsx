@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import CartButton from '../components/CartButton';
+import CartButtonAdd from '../components/CartButtonAdd';
 
 class ProductDetails extends React.Component {
   state = {
@@ -26,6 +27,11 @@ class ProductDetails extends React.Component {
         <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
         <p data-testid="product-detail-price">{`R$ ${price}`}</p>
         <CartButton />
+        <CartButtonAdd
+          productName={ title }
+          productImage={ thumbnail }
+          productPrice={ price }
+        />
       </div>
     );
   }
