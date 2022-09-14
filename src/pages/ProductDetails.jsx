@@ -27,7 +27,11 @@ class ProductDetails extends React.Component {
         <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
         <p data-testid="product-detail-price">{`R$ ${price}`}</p>
         <CartButton />
-        <CartButtonAdd />
+        <CartButtonAdd
+          productName={ title }
+          productImage={ thumbnail }
+          productPrice={ price }
+        />
       </div>
     );
   }
