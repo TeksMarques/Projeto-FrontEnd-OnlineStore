@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import CartButton from '../components/CartButton';
 import CartButtonAdd from '../components/CartButtonAdd';
+import FormsAvaliacao from '../components/FormsAvaliacao';
 
 class ProductDetails extends React.Component {
   state = {
@@ -20,6 +21,7 @@ class ProductDetails extends React.Component {
   render() {
     const { products } = this.state;
     const { title, thumbnail, price } = products;
+    const { match: { params: { id } } } = this.props;
     return (
       <div>
         <h6 data-testid="product-detail-name">{title}</h6>
@@ -31,6 +33,7 @@ class ProductDetails extends React.Component {
           productImage={ thumbnail }
           productPrice={ price }
         />
+        <FormsAvaliacao id={ id } />
       </div>
     );
   }
