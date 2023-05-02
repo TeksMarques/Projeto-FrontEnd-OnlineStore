@@ -18,24 +18,18 @@ Tecnologias utilizadas:
 <details>
 <summary><strong>🛠 Instalação do projeto localmente </strong></summary><br />
 
-1. Primeiro abra o terminal e crie um diretório com o comando <strong>mkdir</strong>:
+1. Clone o projeto:
 ``` 
- mkdir projetos
+ git clone git@github.com:TeksMarques/Projeto-FrontEnd-OnlineStore.git
 ```
 
-2. Entre no diretório que acabou de criar e clone o projeto:
-``` 
- cd projetos
- git clone git@github.com:bmediato/FrontEndOnlineStore.git
-```
-
-3. Entre no diretório do projeto e instale as depenências necessárias: 
+2. Entre no diretório do projeto e instale as depenências necessárias: 
 ``` 
  cd FrontEndOnlineStore
  npm install
 ```
 
-4.Por fim, rode o comando e acesse o projeto via browser, no caminho:
+3.Por fim, rode o comando e acesse o projeto via browser, no caminho:
 ``` 
 npm start
 http://localhost:3000/
